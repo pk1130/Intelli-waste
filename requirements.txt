@@ -72,6 +72,7 @@ jedi==0.18.0
 Jinja2==2.11.2
 joblib==0.15.1
 jsonpatch==1.16
+jsonpickle==2.0.0
 jsonpointer==1.10
 jsonschema==3.2.0
 jupyter==1.0.0
@@ -132,6 +133,7 @@ pyflakes==2.2.0
 Pygments==2.2.0
 pygobject==3.26.1
 PyJWT==1.5.3
+pymongo==3.11.3
 pyOpenSSL==17.5.0
 pyparsing==2.4.0
 pyrsistent==0.16.0
