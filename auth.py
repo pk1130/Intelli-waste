@@ -7,6 +7,7 @@ import numpy as np
 import cv2
 from pymongo import MongoClient
 from PIL import Image
+import random
 # Initialize the Flask application
 app = Flask(__name__)
 img_path = "image0.jpg"
@@ -91,9 +92,8 @@ def predict():
     garbage = predict_class(
         os.getcwd()+"/classifier/trash_mobilenet.h5", image)
     if garbage == "Recyclable":
-        carbon_footprint += random
-
-    return garbage
+        carbon_footprint += random.randint(50, 100)
+    return garbage, carbon_footprint
 
 
 # start flask app
