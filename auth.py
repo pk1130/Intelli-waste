@@ -90,6 +90,9 @@ def predict():
     image = process_image(filepath)
     garbage = predict_class(
         os.getcwd()+"/classifier/trash_mobilenet.h5", image)
+    if garbage == "Recyclable":
+        carbon_footprint += random
+
     return garbage
 @app.route("/api/test", methods = ["POST"])
 def test():
