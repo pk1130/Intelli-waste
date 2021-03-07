@@ -9,8 +9,7 @@ from pymongo import MongoClient
 from PIL import Image
 # Initialize the Flask application
 app = Flask(__name__)
-img = Image.open(
-    "image0.jpg")
+img_path = "image0.jpg"
 
 types = ['Compostable', 'Recyclable', 'Trash']
 
@@ -87,7 +86,8 @@ def predict_class(modelloc, image):
 @app.route('/api/predict', methods=['POST'])
 def predict(filepath):
     image = process_image(filepath)
-    garbage = predict_class(os.getcwd()+"/classifier/trash_mobilenet.h5")
+    garbage = predict_class(
+        os.getcwd()+"/classifier/trash_mobilenet.h5", image)
     return garbage
 
 
