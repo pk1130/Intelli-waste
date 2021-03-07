@@ -84,10 +84,15 @@ def predict_class(modelloc, image):
 
 
 @app.route('/api/predict', methods=['POST'])
-def predict(filepath):
-    image = process_image(filepath)
+def predict():
+    carbon_footprint = 0
+    r = request.json
+    image = process_image(r["filepath"])
     garbage = predict_class(
         os.getcwd()+"/classifier/trash_mobilenet.h5", image)
+    if garbage == "Recyclable":
+        carbon_footprint += random
+
     return garbage
 
 
