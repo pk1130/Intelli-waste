@@ -20,7 +20,7 @@ types = ['Compostable', 'Recyclable', 'Trash']
 def login():
     r = request.json
     uri = "mongodb+srv://user:123@cluster0.uoxjp.mongodb.net/IntelliWaste?retryWrites=true&w=majority"
-    client = MongoClient(uri)
+    client = MongoClient(uri, ssl=True,ssl_cert_reqs='CERT_NONE')
     db = client.IntelliWaste
     data = db.Users.find()
     print(data)
@@ -47,7 +47,7 @@ def signup():
     r = request.json
     print(r)
     uri = "mongodb+srv://user:123@cluster0.uoxjp.mongodb.net/IntelliWaste?retryWrites=true&w=majority"
-    client = MongoClient(uri)
+    client = MongoClient(uri, ssl=True,ssl_cert_reqs='CERT_NONE')
     db = client.IntelliWaste
     data = db.Users.find()
     for elem in data:
@@ -84,12 +84,16 @@ def predict_class(modelloc, image):
 
 
 @app.route('/api/predict', methods=['POST'])
-def predict(filepath):
+def predict():
+    r = request.json
+    filepath = r["filepath"]
     image = process_image(filepath)
     garbage = predict_class(
         os.getcwd()+"/classifier/trash_mobilenet.h5", image)
     return garbage
-
+@app.route("/api/test", methods = ["POST"])
+def test():
+    print(request.json)
 
 # start flask app
 if __name__ == '__main__':
